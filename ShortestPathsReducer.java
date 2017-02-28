@@ -5,10 +5,14 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.Counter;
 
+import org.apache.log4j.Logger;
+
 public class ShortestPathsReducer
     extends Reducer<Text, Text, Text, Text> {
     private LongWritable result = new LongWritable();
 
+    private Logger logger = Logger.getLogger(this.getClass());
+    
     public void reduce(Text key, Iterable<Text> values, Context context)
         throws IOException, InterruptedException {
 
@@ -45,6 +49,7 @@ public class ShortestPathsReducer
         result.set(String.join(" ", neighbours,
                 Long.toString(minDistance),
                 pathFromSource));
+        logger.debug(key + " " + result);
         context.write(key, result);
     }
 }
