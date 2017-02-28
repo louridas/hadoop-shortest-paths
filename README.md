@@ -73,7 +73,7 @@ source, going through `PATH`.
 
 ## Reducer
 
-The reducer, [`ShortestPathsReducer`](ShortestPathsReducer) takes as
+The reducer, [`ShortestPathsReducer`](ShortestPathsReducer), takes as
 input the two different kinds of records output by the mapper and
 finds the best path to a node from the source, if it exists. Then it
 outputs the graph, in adjacency list representation, with the best
@@ -94,7 +94,7 @@ MapReduce pass to notice that nothing can be updated.
 
 ## Driver program
 
-The driver program [`ShortestPaths`](ShortestPaths.java) just plugs in
+The driver program, [`ShortestPaths`](ShortestPaths.java), just plugs in
 the mapper and the reducer and sets up the counter that will be used
 to count the number of updated paths in each iteration.
 
