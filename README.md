@@ -32,9 +32,9 @@ it may not contain whitespace, or commas.
 
 ## Mapper
 
-The mapper, like the reducer, is called multiple times until the
-algorithm finds the solution. The mapper outputs two different kinds
-of records:
+The mapper, ['ShortestPathsMapper'](ShortestPathsMapper), like the
+reducer, is called multiple times until the algorithm finds the
+solution. The mapper outputs two different kinds of records:
   * Records that describe the graph itself.
   * Records that describe, from each node, the path and the distance
     to its neighbours.
@@ -73,11 +73,12 @@ source, going through `PATH`.
 
 ## Reducer
 
-The reducer takes as input the two different kinds of records output
-by the mapper and finds the best path to a node from the source, if it
-exists. Then it outputs the graph, in adjacency list representation,
-with the best distance and path from the source to each node found to
-this point, as described above.
+The reducer, [`ShortestPathsReducer`](ShortestPathsReducer) takes as
+input the two different kinds of records output by the mapper and
+finds the best path to a node from the source, if it exists. Then it
+outputs the graph, in adjacency list representation, with the best
+distance and path from the source to each node found to this point, as
+described above.
 
 To determine whether further iterations are needed, the Reducer uses a
 counter, set by the Hadoop driver program. The driver counts the
@@ -91,6 +92,12 @@ will fail if a graph is not connected. Counting the number of updated
 paths avoids that, at a cost of an extra iteration: we need an extra
 MapReduce pass to notice that nothing can be updated.
 
+## Driver program
+
+The driver program [`ShortestPaths`](ShortestPaths.java) just plugs in
+the mapper and the reducer and sets up the counter that will be used
+to count the number of updated paths in each iteration.
+
 ## Record representation
 
 The different kinds of records are all represented as text. Therefore
@@ -99,3 +106,15 @@ via string processing, that is, splitting and counting the number of
 fields. This may not be the most efficient way, but it is the easiest
 to express in code, without having to resort to more advanced Hadoop
 programming for reading and writing custom types.
+
+## Scripts
+
+Two minimal scripts can be used in a Linux-like command line to
+compile and run the programs:
+  * [`alc.sh`](alc.sh) (adjacency list creator) to create the
+    adjacency list representation.
+  * [`sp.sh`](sp.sh) (shortest paths) to run the shortest paths
+    program.
+    
+Of course, in a normal production environment one would use a proper
+build system, but these two will do for this code.
