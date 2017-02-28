@@ -125,6 +125,14 @@ compile and run the programs:
 Of course, in a normal production environment one would use a proper
 build system, but these two will do for this code.
 
+## Tracing
+
+If you want to see what the mappers and the reducers are doing on a
+small graph you can call the program with setting the variable
+`HADOOP_ROOT_LOGGER="DEBUG,console"` and then grepping the class of
+the mapper, the reducer, or both, after redirecting stderr to output.
+For a larger graph, save the logs.
+
 ## Testing
 
 If your graph is small enough to fit in your computer's memory, you
