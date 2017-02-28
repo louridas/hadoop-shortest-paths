@@ -118,3 +118,11 @@ compile and run the programs:
     
 Of course, in a normal production environment one would use a proper
 build system, but these two will do for this code.
+
+## Testing
+
+If your graph is small enough to fit in your computer's memory, you
+had better use a traditional algorighm like Dijkstra's. If not, you
+can use this program, for example, it can easily solve the
+[Google web graph](https://snap.stanford.edu/data/web-Google.html)
+that was used in a 2002 programming contest.
