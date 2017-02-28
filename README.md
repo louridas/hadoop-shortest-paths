@@ -1,11 +1,12 @@
 # Hadoop Shortest Paths
 
 A minimal Hadoop implementation of the single-source shortest paths
-problem. The solution follows (not slavishly) the algorithm described
-in Jimmy Lin and Chris Dyer, "Data-Intensive Text Processing with
-MapReduce", published by Morgan and Claypool, 2010. For a detailed
-explanation of how the algorithm works, check the original
-publication. The following is a brief overview of the implementation
+problem. The solution is based on the algorithm described in Jimmy Lin
+and Chris Dyer, "Data-Intensive Text Processing with MapReduce",
+published by Morgan and Claypool, 2010. For a detailed explanation of
+how the algorithm works, check the original publication, but note that
+the implemented algorithm has some differences compared to the
+original one. The following is a brief overview of the implementation
 choices.
 
 ## Input Format
@@ -70,6 +71,11 @@ NODE DISTANCE PATH
 ```
 The `DISTANCE` field will be the updated distance to `NODE` from the
 source, going through `PATH`.
+
+In the original publication the mapper emits distances to all
+neighbours; in this implementation, we emit only the distances when
+they are not infinite (after all, an infinite distance will not change
+anything in the reducer).
 
 ## Reducer
 
