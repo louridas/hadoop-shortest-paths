@@ -9,10 +9,9 @@ import org.apache.log4j.Logger;
 
 public class ShortestPathsReducer
     extends Reducer<Text, Text, Text, Text> {
-    private LongWritable result = new LongWritable();
-
-    private Logger logger = Logger.getLogger(this.getClass());
     
+    private Logger logger = Logger.getLogger(this.getClass());
+
     public void reduce(Text key, Iterable<Text> values, Context context)
         throws IOException, InterruptedException {
 
