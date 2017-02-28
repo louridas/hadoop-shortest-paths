@@ -33,7 +33,7 @@ it may not contain whitespace, or commas.
 
 ## Mapper
 
-The mapper, ['ShortestPathsMapper'](ShortestPathsMapper), like the
+The mapper, [`ShortestPathsMapper`](ShortestPathsMapper), like the
 reducer, is called multiple times until the algorithm finds the
 solution. The mapper outputs two different kinds of records:
   * Records that describe the graph itself.
