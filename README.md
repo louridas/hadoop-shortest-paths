@@ -71,3 +71,31 @@ NODE DISTANCE PATH
 The `DISTANCE` field will be the updated distance to `NODE` from the
 source, going through `PATH`.
 
+## Reducer
+
+The reducer takes as input the two different kinds of records output
+by the mapper and finds the best path to a node from the source, if it
+exists. Then it outputs the graph, in adjacency list representation,
+with the best distance and path from the source to each node found to
+this point, as described above.
+
+To determine whether further iterations are needed, the Reducer uses a
+counter, set by the Hadoop driver program. The driver counts the
+number of updated paths. If the reducer is not able to update any
+path, then there does not need to be any further iteration.
+
+Note that this is different from the original description of the
+algorithm by Lin and Dyer, where they count they number of paths that
+are still at infinity. That approach works for connected graphs, but
+will fail if a graph is not connected. Counting the number of updated
+paths avoids that, at a cost of an extra iteration: we need an extra
+MapReduce pass to notice that nothing can be updated.
+
+## Record representation
+
+The different kinds of records are all represented as text. Therefore
+the mapper and the reducer determine what kind of record they read
+via string processing, that is, splitting and counting the number of
+fields. This may not be the most efficient way, but it is the easiest
+to express in code, without having to resort to more advanced Hadoop
+programming for reading and writing custom types.

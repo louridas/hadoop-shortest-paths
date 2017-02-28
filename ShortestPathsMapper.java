@@ -36,6 +36,7 @@ public class ShortestPathsMapper
         Text outValue = new Text();
         
         if (nodes.length == 2) {
+            // First time, input is the adjacency list
             if (from.equals(source)) {
                 distance = 0;
                 outValue.set(String.join(" ", nodes[1], zero, from));
@@ -43,6 +44,7 @@ public class ShortestPathsMapper
                 outValue.set(String.join(" ", nodes[1], inf, NULL_NODE));
             }
         } else {
+            // In all other iterations, input is the reducer's output
             distance = Long.parseLong(nodes[2]);
             partPath = nodes[3];
             outValue.set(String.join(" ", nodes[1], nodes[2], nodes[3]));
