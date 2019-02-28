@@ -24,6 +24,7 @@ public class ShortestPathsReducer
         long existingDistance = Long.MAX_VALUE;
 
         for (Text val : values) {
+            logger.debug("Input: " + key + " " + val);
             String[] curNodeData = val.toString().split("\\s+");
             if (curNodeData.length == 2) {
                 long distance = Long.parseLong(curNodeData[0]);

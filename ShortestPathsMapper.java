@@ -18,7 +18,7 @@ public class ShortestPathsMapper
         throws IOException, InterruptedException {
             
         Configuration conf = context.getConfiguration();
-        String source = conf.get("source");
+        String source = conf.get("source"); // the source node
         String line = value.toString();
         String[] nodes = line.split("\\s+");
         if (nodes.length < 2) {

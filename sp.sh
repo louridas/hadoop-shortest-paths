@@ -6,3 +6,4 @@ done
 /usr/local/hadoop/bin/hadoop com.sun.tools.javac.Main -Xlint:unchecked -Xdiags:verbose ShortestPaths*.java && \
     jar cf sp.jar ShortestPaths*.class && \
     /usr/local/hadoop/bin/hadoop jar sp.jar ShortestPaths $1 $2 $3
+    #HADOOP_ROOT_LOGGER="DEBUG,console" /usr/local/hadoop/bin/hadoop jar sp.jar ShortestPaths $1 $2 $3

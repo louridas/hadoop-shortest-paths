@@ -120,7 +120,11 @@ compile and run the programs:
   * [`alc.sh`](alc.sh) (adjacency list creator) to create the
     adjacency list representation.
   * [`sp.sh`](sp.sh) (shortest paths) to run the shortest paths
-    program.
+    program. The `sp.sh` script takes three arguments, the input
+    directory, the prefix for the output directories, and the source
+    (starting) node. The output directories are of the form
+    `output-n`, where `n` is the iteration number. When `output-n` is
+    created, `output-n-1` is deleted, if it exists.
     
 Of course, in a normal production environment one would use a proper
 build system, but these two will do for this code.

@@ -25,7 +25,7 @@ public class ShortestPaths extends Configured implements Tool {
     @Override
     public int run(String[] args) throws Exception {
         Configuration conf = this.getConf();
-        conf.set("source", args[2]);
+        conf.set("source", args[2]); // the source node
         long numUpdated = 1;
         int code = 0;
         int numIterations = 1;
@@ -34,7 +34,7 @@ public class ShortestPaths extends Configured implements Tool {
         while (numUpdated > 0) {
             logger.info("Iteration: " + numIterations);
             String input, output;
-            Job job = Job.getInstance(conf, "word count");
+            Job job = Job.getInstance(conf, "shortest paths");
             if (numIterations == 1) {
                 input = args[0];
             } else {
